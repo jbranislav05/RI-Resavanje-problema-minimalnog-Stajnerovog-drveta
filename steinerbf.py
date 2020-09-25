@@ -160,3 +160,49 @@ class Steinerbf:
 
     def runBF(self, terminals):
         print(self.steiner(terminals))
+
+    # bfs - returns true if two nodes are connected
+    def check_if_two_nodes_are_connected(self, start, end):
+        visited = set()
+        not_visited = []
+        not_visited.append(start)
+        while(not_visited):
+            node = not_visited.pop(0)
+            visited.add(node)
+            for neighbor in self.adjacency_list[node]:
+                if(neighbor[0] == end):
+                    return True
+                else:
+                    if(neighbor[0] not in visited and neighbor[0] not in not_visited):
+                        not_visited.append(neighbor[0])
+        return False
+
+    # bfs - returns true if nodes from the list form a connected graph
+    def check_if_nodes_are_connected(self, node_list):  # indirectly
+        visited = set()
+        not_visited = []
+        not_visited.append(node_list.pop(0))
+        while(not_visited):
+            node = not_visited.pop(0)
+            visited.add(node)
+            for neighbor in self.adjacency_list[node]:
+                if((neighbor[0] not in visited and neighbor[0] not in not_visited) and neighbor[0] in node_list):
+                    not_visited.append(neighbor[0])
+                    node_list.remove(neighbor[0])
+        if(node_list):
+            return False
+        return True
+
+    def get_full_edge_information(self, edge_list):
+        new_edge_list = []
+        for edge in edge_list:
+            for edgeFull in self.edge_list:
+                if edge == edgeFull[0]:
+                    new_edge_list.append[edgeFull]
+        return new_edge_list
+
+    def check_if_edges_are_connected(self, edge_list):
+        new_edge_list = self.get_full_edge_information(edge_list)
+        graph = self.initialize(new_edge_list)
+        keys_list = list(graph.keys())
+        return self.check_if_nodes_are_connected(keys_list)

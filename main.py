@@ -19,12 +19,14 @@ def read_input(filename):  # ucitavamo podatke
 
 if __name__ == '__main__':
     g_list = read_input("graf2.txt")
-    terminal_vertices = [1, 3, 5, 6, 10, 24]
+    terminal_vertices = [5, 7, 10, 12, 13, 14]
     gbf = Steinerbf(g_list)
     gas = Steinersa(g_list)
-    print("------BRUTEFORCE------------")
+    print("------BRUTEFORCE(kinda, using Dijsktra)------------")
     gbf.runBF(terminal_vertices)
     print("------SIMULATED ANEALING------------")
-    terminal_vertices = [1, 3, 5, 6, 10, 24]
+    terminal_vertices = [5, 7, 10, 12, 13, 14]
     gas.runSA(terminal_vertices)
     print("------------------")
+
+# terminals for testing [1, 3, 5, 6, 10, 24] [1,3,5,6]  [5,7,10,12,13,14]
